@@ -50,10 +50,10 @@ function debouncePromised(callback, timeOut, inmediate = false) {
     let context = this, args = arguments;
     let shouldCall = !timerId && !lastArgs && inmediate;
     lastArgs = args;
-    if (shouldCall) return Promise.resolve(callback.apply(this, args));
+    if (shouldCall) return Promise.resolve(callback.apply(context, args));
 
     clearTimeout(timerId);
-    timerId = setTimeout(resolveDelayedPromise.bind(this), timeOut);
+    timerId = setTimeout(resolveDelayedPromise.bind(context), timeOut);
     
     if (!deferedPromise) {
       deferedPromise = {};
